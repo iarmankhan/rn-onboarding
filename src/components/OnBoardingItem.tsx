@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     title: {
-        fontWeight: '800',
+        fontWeight: 'bold',
         fontSize: 28,
         marginBottom: 10,
         color: '#493d8a',
