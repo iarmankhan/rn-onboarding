@@ -42,7 +42,7 @@ const OnBoarding: React.FC<OnBoardingProps> = () => {
             </View>
 
             <Paginator data={SLIDES} scrollX={scrollX}/>
-            <NextButton />
+            <NextButton percentage={(currentIndex + 1) * (100 / SLIDES.length)} />
         </View>
     );
 };
