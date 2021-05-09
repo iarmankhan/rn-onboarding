@@ -5,9 +5,10 @@ import {AntDesign} from "@expo/vector-icons";
 
 interface NextButtonProps {
     percentage: number;
+    scrollTo: () => void;
 }
 
-const NextButton: React.FC<NextButtonProps> = ({percentage}) => {
+const NextButton: React.FC<NextButtonProps> = ({percentage, scrollTo}) => {
     const size = 128;
     const strokeWidth = 2;
     const center = size / 2;
@@ -44,7 +45,7 @@ const NextButton: React.FC<NextButtonProps> = ({percentage}) => {
         return () => {
             progressAnimation.removeAllListeners()
         }
-    }, [percentage])
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -70,7 +71,7 @@ const NextButton: React.FC<NextButtonProps> = ({percentage}) => {
                     />
                 </G>
             </Svg>
-            <TouchableOpacity style={styles.button} activeOpacity={.6}>
+            <TouchableOpacity onPress={scrollTo} style={styles.button} activeOpacity={.6}>
                 <AntDesign name="arrowright" size={32} color='#fff'/>
             </TouchableOpacity>
         </View>

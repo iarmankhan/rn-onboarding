@@ -12,13 +12,21 @@ interface OnBoardingProps {
 const OnBoarding: React.FC<OnBoardingProps> = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const scrollX = useRef(new Animated.Value(0)).current;
-    const slidesRef = useRef(null)
+    const slidesRef = useRef<any>(null)
 
     const viewableItemsChanged = useRef(({viewableItems}: { viewableItems: ViewToken[] }) => {
         setCurrentIndex(viewableItems[0].index as any)
     }).current;
 
     const viewConfig = useRef({viewAreaCoveragePercentThreshold: 50}).current
+
+    const scrollTo = () => {
+        if(currentIndex < SLIDES.length - 1){
+            slidesRef?.current?.scrollToIndex({index: currentIndex + 1})
+        }else{
+            console.log("last slide")
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -42,7 +50,7 @@ const OnBoarding: React.FC<OnBoardingProps> = () => {
             </View>
 
             <Paginator data={SLIDES} scrollX={scrollX}/>
-            <NextButton percentage={(currentIndex + 1) * (100 / SLIDES.length)} />
+            <NextButton scrollTo={scrollTo} percentage={(currentIndex + 1) * (100 / SLIDES.length)} />
         </View>
     );
 };
