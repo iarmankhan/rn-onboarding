@@ -3,6 +3,7 @@ import {Animated, StyleSheet, View, ViewToken} from 'react-native';
 import {SLIDES} from "../data/slides";
 import OnBoardingItem from "../components/OnBoardingItem";
 import Paginator from "../components/Paginator";
+import NextButton from "../components/NextButton";
 
 interface OnBoardingProps {
 
@@ -41,6 +42,7 @@ const OnBoarding: React.FC<OnBoardingProps> = () => {
             </View>
 
             <Paginator data={SLIDES} scrollX={scrollX}/>
+            <NextButton />
         </View>
     );
 };
