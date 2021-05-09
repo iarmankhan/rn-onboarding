@@ -1,6 +1,7 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Svg, {Circle, G} from 'react-native-svg'
+import {AntDesign} from "@expo/vector-icons";
 
 interface NextButtonProps {
 
@@ -37,6 +38,9 @@ const NextButton: React.FC<NextButtonProps> = () => {
                     />
                 </G>
             </Svg>
+            <TouchableOpacity style={styles.button} activeOpacity={.6}>
+                <AntDesign name="arrowright" size={32} color='#fff'/>
+            </TouchableOpacity>
         </View>
     );
 };
@@ -46,6 +50,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    button: {
+        position: 'absolute',
+        borderRadius: 100,
+        backgroundColor: '#f43385',
+        padding: 20
     }
 })
 
