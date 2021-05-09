@@ -1,5 +1,6 @@
 import React, {useRef, useState} from 'react';
 import {Animated, StyleSheet, View, ViewToken} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import {SLIDES} from "../data/slides";
 import OnBoardingItem from "../components/OnBoardingItem";
 import Paginator from "../components/Paginator";
@@ -20,11 +21,15 @@ const OnBoarding: React.FC<OnBoardingProps> = () => {
 
     const viewConfig = useRef({viewAreaCoveragePercentThreshold: 50}).current
 
-    const scrollTo = () => {
-        if(currentIndex < SLIDES.length - 1){
+    const scrollTo = async () => {
+        if (currentIndex < SLIDES.length - 1) {
             slidesRef?.current?.scrollToIndex({index: currentIndex + 1})
-        }else{
-            console.log("last slide")
+        } else {
+            try {
+                await AsyncStorage.setItem('@viewedOnBoarding', 'true')
+            } catch (err) {
+                console.log('Error @setItem', err)
+            }
         }
     }
 
@@ -50,7 +55,7 @@ const OnBoarding: React.FC<OnBoardingProps> = () => {
             </View>
 
             <Paginator data={SLIDES} scrollX={scrollX}/>
-            <NextButton scrollTo={scrollTo} percentage={(currentIndex + 1) * (100 / SLIDES.length)} />
+            <NextButton scrollTo={scrollTo} percentage={(currentIndex + 1) * (100 / SLIDES.length)}/>
         </View>
     );
 };
