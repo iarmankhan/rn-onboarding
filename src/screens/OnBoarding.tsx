@@ -10,7 +10,15 @@ interface OnBoardingProps {
 const OnBoarding: React.FC<OnBoardingProps> = () => {
     return (
         <View style={styles.container}>
-            <FlatList data={SLIDES} renderItem={({item}) => <OnBoardingItem item={item} key={item.id}/>}/>
+            <FlatList
+                data={SLIDES}
+                renderItem={({item}) => <OnBoardingItem item={item} key={item.id}/>}
+                keyExtractor={item => item.id}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                bounces={false}
+                pagingEnabled
+            />
         </View>
     );
 };
