@@ -2,6 +2,7 @@ import React, {useRef, useState} from 'react';
 import {Animated, StyleSheet, View, ViewToken} from 'react-native';
 import {SLIDES} from "../data/slides";
 import OnBoardingItem from "../components/OnBoardingItem";
+import Paginator from "../components/Paginator";
 
 interface OnBoardingProps {
 
@@ -38,6 +39,8 @@ const OnBoarding: React.FC<OnBoardingProps> = () => {
                     ref={slidesRef}
                 />
             </View>
+
+            <Paginator data={SLIDES} scrollX={scrollX}/>
         </View>
     );
 };
